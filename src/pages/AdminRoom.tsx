@@ -1,13 +1,12 @@
-import { useParams } from 'react-router-dom';
-import logoImg from '../assets/images/logo.svg';
+import { useParams, useHistory } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
-import { useState, FormEvent } from 'react';
-import { useAuth } from '../hooks/useAuth';
 import { useRoom } from '../hooks/useRoom';
-import '../styles/room.scss';
 import { database } from '../services/firebase';
+import '../styles/room.scss';
+import logoImg from '../assets/images/logo.svg';
+import deleteImg from '../assets/images/delete.svg';
 
 type RoomParams = {
     id: string;
@@ -16,36 +15,22 @@ type RoomParams = {
 
 export const AdminRoom = () => {
 
-    const { user } = useAuth();
     const params = useParams<RoomParams>();
-    const [newQuestion, setNewQuestion] = useState('');
     const { title, questions } = useRoom(params.id)
+    const history = useHistory();
 
-    const handleSendQuestion = async (event: FormEvent) => {
-
-        event.preventDefault();
-
-        if (newQuestion.trim() === '') {
-            return;
+    const handleDeleteQuestion = async (questionId: string) => {
+        if (window.confirm('Tem certeza que deseja excluir essa pergunta?')) {
+            await database.ref(`rooms/${params.id}/questions/${questionId}`).remove();
         }
+    };
 
-        if (!user) {
-            throw new Error('You must be logged in');
-        }
+    const handleEndRoom = async () => {
+        await database.ref(`rooms/${params.id}`).update({
+            endedAt: new Date()
+        })
 
-        const question = {
-            content: newQuestion,
-            author: {
-                name: user?.name,
-                avatar: user.avatar
-            },
-            isHighlighted: false,
-            isAnswered: false
-        };
-
-        await database.ref(`rooms/${params.id}/questions`).push(question);
-
-        setNewQuestion('');
+        history.push('/');
     }
 
     return (
@@ -55,7 +40,10 @@ export const AdminRoom = () => {
                     <img src={logoImg} alt="" />
                     <div>
                         <RoomCode code={params.id} />
-                        <Button>Encerrar Sala</Button>
+                        <Button
+                            isOutlined
+                            onClick={handleEndRoom}
+                        >Encerrar Sala</Button>
                     </div>
                 </div>
             </header>
@@ -72,7 +60,14 @@ export const AdminRoom = () => {
                             content={question.content}
                             author={question.author}
                             key={index}
-                        />
+                        >
+                            <button
+                                type="button"
+                                onClick={() => handleDeleteQuestion(question.id)}
+                            >
+                                <img src={deleteImg} alt="Remover pergunta" />
+                            </button>
+                        </Question>
                     ))}
                 </div>
             </main>

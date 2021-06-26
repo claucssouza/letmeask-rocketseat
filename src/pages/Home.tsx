@@ -15,7 +15,7 @@ export const Home = () => {
 
     const handleCreateRoom = async () => {
         if (!user) {
-           await signInWithGoogle();
+            await signInWithGoogle();
         }
         history.push('/rooms/new');
     };
@@ -29,6 +29,11 @@ export const Home = () => {
 
         if (!roomRef.exists()) {
             alert('Room doew not exists');
+            return;
+        }
+
+        if (roomRef.val().endedAt) {
+            alert('Room already closed.');
             return;
         }
         history.push(`/rooms/${roomCode}`);
