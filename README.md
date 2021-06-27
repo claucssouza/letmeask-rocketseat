@@ -19,7 +19,9 @@
 - [Firebase](https://firebase.google.com/)
 
 Obs: para usar o **Firebase** na aplicação será necessário que você
-crie uma conta(free) no site do **Firebase**, e dentro da raiz do projeto crie um arquivo .env.local adicionando as variavéis abaixo, com suas credenciais obtidas no mesmo site.
+crie uma conta(free) no site do **Firebase**, e também selecione um banco de dados (RealTime Database).
+Será necessário criar dentro da raiz do projeto um arquivo .env.local adicionando as variavéis abaixo, com suas credenciais obtidas no site.
+
 ``` bash
 
 #env.local
