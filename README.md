@@ -9,7 +9,7 @@
 
 # Sobre
 
-### O projeto **Let me Ask**, foi desenvolvido no **NLW Together** da **Rocketseat**, com a finalidade de criar salas/entrar em salas existentes e poder enviar perguntas sobre determinado tema que esteja sendo abordado em uma live ou algum conteúdo em que os usuários possam interagir para tirar suas dúvidas.
+#### O projeto **Let me Ask**, foi desenvolvido no **NLW Together** da **Rocketseat**, com a finalidade de criar salas/entrar em salas existentes e poder enviar perguntas sobre determinado tema que esteja sendo abordado em uma live ou algum conteúdo em que os usuários possam interagir para tirar suas dúvidas.
 ---
 ## Tecnologia
 
