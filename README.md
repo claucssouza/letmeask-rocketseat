@@ -23,13 +23,13 @@ crie uma conta(free) no site do **Firebase**, e dentro da raiz do projeto crie u
 ``` bash
 
 #env.local
-REACT_APP_API_KEY (Key)
-REACT_APP_AUTH_DOMAIN(Domain)
-REACT_APP_DATABASE_URL(Url)
-REACT_APP_PROJECT_ID(Id Projeto)
-REACT_APP_STORAGE_BUCKET(Storage)
-REACT_APP_MESSAGING_SENDER_ID(IdMessage)
-REACT_APP_APP_ID(Id App)
+REACT_APP_API_KEY=(Key)
+REACT_APP_AUTH_DOMAIN=(Domain)
+REACT_APP_DATABASE_URL=(Url)
+REACT_APP_PROJECT_ID=(Id Projeto)
+REACT_APP_STORAGE_BUCKET=(Storage)
+REACT_APP_MESSAGING_SENDER_ID=(IdMessage)
+REACT_APP_APP_ID=(Id App)
 
 ```
 
